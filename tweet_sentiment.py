@@ -1,15 +1,11 @@
 import sys
 import json
-import regex as re
 
 def hw():
     print 'Hello, world!'
 
 def lines(fp):
     print str(len(fp.readlines()))
-
-def remove_punctuation(text):
-    return re.sub(ur"\p{P}+", "", text)
 
 def main():
     sent_file = open(sys.argv[1])   
@@ -30,11 +26,11 @@ def main():
         textdata = onetweet['text'].lower() #.upper() **sentiment file is all lower case
         totalscore = 0
         for word in textdata.split():
-            cleanword = word.encode('utf-8') 
-            # strung = repr(cleanword) don't want to send as string  
-            #Note: may need to remove punctuation
-            #print cleanword
-            wordscore = scores.get(cleanword)
+            cleanword = word.encode('utf-8')
+            #print cleanword 
+            cleanerword = cleanword.rstrip('?:!.,;') #Removing punctuation
+            #print cleanerword
+            wordscore = scores.get(cleanerword)
             if wordscore == None:
                 wordscore = 0
             totalscore = totalscore + wordscore
