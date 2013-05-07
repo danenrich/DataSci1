@@ -39,7 +39,7 @@ def main():
             if wordscore == None:
                 wordscore = 0
             totalscore = totalscore + wordscore
-        sys.stdout.write("sentiment:" + str(totalscore)+"\n")
+        sys.stdout.write(str(totalscore)+"\n")
 
     sent_file.close
     tweet_file.close
