@@ -25,23 +25,22 @@ def main():
         """
     #print scores.items() # Print every (term, score) pair in the dictionary         
     
-    tweettext = {}
-    results = json.load(tweet_file) #['results']
-    tweets = results['results']
-    data = tweets[1]
-    textdata = data['text']
-    totalscore = 0
-    for word in textdata.split():
-        cleanword = word.encode('utf-8') #.upper() **not doing case comparison
-        # strung = repr(cleanword) don't want to send as string  
-        #Note: may need to remove punctuation
-        #print cleanword
-        wordscore = scores.get(cleanword)
-        if wordscore == None:
-            wordscore = 0
-        totalscore = totalscore + wordscore
-    print "sentiment:" + str(totalscore)
-            
+    results = json.load(tweet_file) #['results']  #this is a dictionary
+    tweets = results['results'] #this is a list 
+    for onetweet in tweets:
+        textdata = onetweet['text']
+        totalscore = 0
+        for word in textdata.split():
+            cleanword = word.encode('utf-8') #.upper() **not doing case comparison
+            # strung = repr(cleanword) don't want to send as string  
+            #Note: may need to remove punctuation
+            #print cleanword
+            wordscore = scores.get(cleanword)
+            if wordscore == None:
+                wordscore = 0
+            totalscore = totalscore + wordscore
+        sys.stdout.write("sentiment:" + str(totalscore)+"\n")
+
     sent_file.close
     tweet_file.close
 
