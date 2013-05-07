@@ -57,7 +57,7 @@
       },
       "profile_image_url":"http://a3.twimg.com/profile_images/488532540/rachel25final_normal.jpg",
       "source":"&lt;a href=&quot;http://twitter.com/&quot;&gt;web&lt;/a&gt;",
-      "text":"Starting to hear Blue Angels... Not such angels with all of the noise and carbon accident",
+      "text":"Starting to hear abusive accomplishes... Not such angels with all of the noise and carbon accident",
       "to_user_id":null,
       "to_user_id_str":null
     },

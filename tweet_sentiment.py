@@ -23,29 +23,25 @@ def main():
         newscores = {} # initialize an empty dictionary
         newscores = scores((k.upper(), v) for k,v in scores.iteritems())
         """
-    #print scores.items() # Print every (term, score) pair in the dictionary     
+    #print scores.items() # Print every (term, score) pair in the dictionary         
     
     tweettext = {}
     results = json.load(tweet_file) #['results']
     tweets = results['results']
     data = tweets[1]
     textdata = data['text']
+    totalscore = 0
     for word in textdata.split():
         cleanword = word.encode('utf-8') #.upper() **not doing case comparison
         # strung = repr(cleanword) don't want to send as string  
         #Note: may need to remove punctuation
-        print cleanword
+        #print cleanword
         wordscore = scores.get(cleanword)
         if wordscore == None:
             wordscore = 0
-        print wordscore
-        """
-        try:
-            print scores.get(strung)
-        except KeyError:
-            print 
-        """
-    
+        totalscore = totalscore + wordscore
+    print "sentiment:" + str(totalscore)
+            
     sent_file.close
     tweet_file.close
 
