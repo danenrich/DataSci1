@@ -1,7 +1,5 @@
 import sys
-import urllib2 as urllib
 import json
-import csv
 
 def hw():
     print 'Hello, world!'

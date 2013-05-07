@@ -1,6 +1,5 @@
 import sys
 
-
 def hw():
     print 'Hello, world!'
 
