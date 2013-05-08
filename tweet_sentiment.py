@@ -36,6 +36,15 @@ def main():
             totalscore = totalscore + wordscore
         sys.stdout.write(str(totalscore)+"\n")
 
+        #look here to see how to iterate through key/values http://dan.lecocq.us/wordpress/2011/09/14/python-and-arbitrary-function-arguments-kwargs/
+        """
+        def kw(**kwargs):
+        for key, value in kwargs.items():
+            print '%s => %s' % (key, value)
+        
+        kw(**{'hello':'Howdy!', 'first':'Dan'})
+        kw(hello='Howdy!', first='Dan')
+        """
     sent_file.close
     tweet_file.close
 
