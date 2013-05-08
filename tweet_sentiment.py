@@ -21,7 +21,7 @@ def main():
     #print scores.items() # Print every (term, score) pair in the dictionary         
  
     data = []
-    with open(tweet_file) as f:  #when this is open('output.txt') it works 5/8/13
+    with tweet_file as f:  #when this is open('output.txt') it works 5/8/13
         for x in f:
             data.append(json.loads(x))
 

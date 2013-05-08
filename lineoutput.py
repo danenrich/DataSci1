@@ -1,5 +1,5 @@
 with open("output.txt") as myfile:
-    head = [myfile.next() for x in xrange(44323,44326)]
+    head = [myfile.next() for x in xrange(20)]
     #text_file = open("problem_1.txt", "w")
     spam = str(head)
     #text_file.write(spam)
