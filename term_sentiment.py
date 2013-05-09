@@ -30,12 +30,12 @@ def main():
 
     #print scores.items() # Print every (term, score) pair in the dictionary         
  
-    data = []
+    tweets = []
     with tweet_file as f:  #when this is open('output.txt') it works 5/8/13
         for x in f:
-            data.append(json.loads(x))
+            tweets.append(json.loads(x))
 
-    tweets = data #['results'] #this is a list 
+    #tweets = data #['results'] #this is a list 
 
     for onetweet in tweets:
         totalscore = 0

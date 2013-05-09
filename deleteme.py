@@ -8,7 +8,7 @@ spam = [{ 'Hola':'1', 'Hoi':"2", 'noun':"3" },{ 'Hola':'5', 'Hoi':"7", 'cat':"10
 new = []
 new = [{'red':'6','blue':"10"}] 
 spam = spam + new
-#print spam
+print spam[1]['Hola']
 
 #print spam[0]['noun']
 
@@ -17,7 +17,7 @@ small = []
 for i in spam:
     small= i.keys()
     keylist = keylist + small
-#print keylist
+print keylist
 
 uniques = []
 uniques = list(set(keylist))
@@ -44,11 +44,13 @@ temp = {
 }
 dict1.append(temp)
 
-joe = next((item for item in dict1 if item["word"] == "blah2"), None)
+#joe = next((item for item in dict1 if item["word"] == "blah2"), None)
 for i in dict1:
     if i["word"] == "blah":
         i["count"] = i["count"]+1
+        print i["count"]
+#joe = dict1.get("word"'blah2')
  
 print dict1
 print temp
-print joe
+#print joe
