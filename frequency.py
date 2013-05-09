@@ -19,7 +19,7 @@ def main():
     myterms = [] #This is the final list of terms
     totalwords = 0
     #for onetweet in tweets: #REMOVE THIS XRANGE CONSTRAINT
-    for onetweet in tweets:
+    for onetweet in tweets[:20]:
         if onetweet.has_key('text') == 1:
             textdata = onetweet['text'] # **sentiment file is all lower case
             for word in textdata.split():
@@ -45,11 +45,11 @@ def main():
 
     #Print master list
     for term in myterms:
-        wordstring = term["word"]
-        wordstring = wordstring.encode("utf-8")
-        freq = str(float(float(term["count"])/totalwords))
-        sys.stdout.write(str(wordstring) + " " + freq + "\n ")
-        #sys.stdout.write(str(term["word"])+ " " + str(freq)+"\n")
+        if len(term["word"]) != 0:
+            wordstring = term["word"]
+            wordstring = wordstring.encode("utf-8")
+            freq = str(float(float(term["count"])/totalwords))
+            sys.stdout.write(str(wordstring) + " " + freq + "\n")
 
     tweet_file.close
 
