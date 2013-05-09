@@ -37,7 +37,7 @@ def main():
 
     myterms = [] #This is the final list of new terms
     #for onetweet in tweets: #REMOVE THIS XRANGE CONSTRAINT
-    for onetweet in tweets[:5]:
+    for onetweet in tweets[:20]:
         totalscore = 0
         if onetweet.has_key('text') == 1:
             textdata = onetweet['text'].lower() # **sentiment file is all lower case
@@ -71,7 +71,7 @@ def main():
                     if term["word"] == word:
                         current_score = term["score"]
                         current_count = term["count"]
-                        term["score"] = ((current_score*current_count)+totalscore)/(current_count+1) #Average in the new score
+                        term["score"] = float(((current_score*current_count)+totalscore)/(current_count+1)) #Average in the new score
                         term["count"] = current_count + 1 #Increment the number of instances
             new_list = list(set(new_list)) #dedupe the update_list
             for word in new_list: #add new words, assign them totalscore
@@ -83,7 +83,7 @@ def main():
             myterms = myterms + myterms_temp #Append master list with list of new words in this tweet
     #Print master list
     for term in myterms:
-        sys.stdout.write(str(term["word"])+ " Score: " + str(term["score"])+" Count: " + str(term["count"])+"\n")
+        sys.stdout.write(str(term["word"])+ " " + str(term["score"])+"\n")
 
     sent_file.close
     tweet_file.close

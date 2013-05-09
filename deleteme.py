@@ -5,6 +5,10 @@ string = 'blah'
 blah = blah + [string]
 print blah
 
+fp = 100
+fp = fp / 8
+print fp
+
 spam = [{ 'Hola':'1', 'Hoi':"2", 'noun':"3" },{ 'Hola':'5', 'Hoi':"7", 'cat':"10" }]
 #print type(spam)
 #print type(spam[0])
