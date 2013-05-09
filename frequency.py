@@ -38,15 +38,19 @@ def main():
             textdata = onetweet['text'].lower() # **sentiment file is all lower case
             for word in textdata.split():
                 totalwords = totalwords + 1
-                cleanword = word.encode('utf-8')
-                cleanerword = cleanword.rstrip('?:!.,;') #Removing punctuation
+                #cleanword = word.encode('utf-8')
+                cleanerword = word.rstrip('?:!.,;') #Removing punctuation
+                cleanerword = cleanerword.replace("\n"," ") #Removing line breaks
                 #Check to see if it's already in my list
                 checkvar = 0
                 for term in myterms: #The word is already in my list, so update its count
-                    if term["word"] == cleanerword:
-                        current_count = term["count"]
-                        term["count"] = current_count + 1 #Increment the number of instances                        
-                        checkvar = 1
+                    if len(myterms) > 0:
+                        print term["word"]
+                        print cleanerword
+                        if term["word"] == cleanerword:
+                            current_count = term["count"]
+                            term["count"] = current_count + 1 #Increment the number of instances                        
+                            checkvar = 1
                 #The word isn't already in my list, add it
                 if checkvar == 0: 
                     myterms =  myterms + [{
@@ -56,7 +60,10 @@ def main():
 
     #Print master list
     for term in myterms:
-        sys.stdout.write(str(term["word"])+ " " + str(float(term["count"]/totalwords))+"\n")
+        wordstring = term["word"]
+        freq = str(float(float(term["count"])/totalwords))
+        sys.stdout.write(str(wordstring) + " ")
+        #sys.stdout.write(str(term["word"])+ " " + str(freq)+"\n")
 
     sent_file.close
     tweet_file.close

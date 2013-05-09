@@ -1,28 +1,10 @@
 import sys
 import json
 
-def hw():
-    print 'Hello, world!'
-
-def lines(fp):
-    print str(len(fp.readlines()))
-
 def main():
     sent_file = open(sys.argv[1])   
     tweet_file = open(sys.argv[2])
-    #sflines = lines(sent_file)
-    #twlines = lines(tweet_file)
-    
-    """
-    Theory: If a word is in the reference dictionary ("ref"), use it to calc the tweet's totalscore. 
-    Once you've finished parsing the tweet, if a word is not in ref assign each missing word the tweet total score and stick that result in work.
-    The working dictionary will have the word, the score, and the number of times we've found that word. {"word":"blah","score":"1.23","instances":"4"}
-    The next time we find the word we can simply
-    multiply the word's score times the number of times we've found the word, add to it the new score, and divide by instances + 1. We then increment
-    the instances count.
-    Once you're done parsing all of the tweets, average all the words across the dictionary.
-    """  
-    
+      
     scores = {} # initialize an empty dictionary
     for line in sent_file:
         term, score  = line.split("\t")  # The file is tab-delimited. "\t" means "tab character"
@@ -37,16 +19,17 @@ def main():
 
     myterms = [] #This is the final list of new terms
     for onetweet in tweets: 
-    #for onetweet in tweets[:20]: #REMOVE THIS XRANGE CONSTRAINT
+    #for onetweet in tweets[:2000]: #REMOVE THIS XRANGE CONSTRAINT
         totalscore = 0
         if onetweet.has_key('text') == 1:
-            textdata = onetweet['text'].lower() # **sentiment file is all lower case
+            textdata = onetweet['text'] # **sentiment file is all lower case
             update_list = [] #List of words in the tweet that exist in my dictionary already, so their values need updating. Initialize it for each tweet. 
             new_list = [] #List of words that do not exist so need to be created.
             myterms_temp = [] #List of dictionary entries for each new word
             for word in textdata.split():
                 cleanword = word.encode('utf-8')
                 cleanerword = cleanword.rstrip('?:!.,;') #Removing punctuation
+                cleanerword = cleanerword.replace("\n"," ")
                 #print cleanerword
                 wordscore = scores.get(cleanerword)
                 if wordscore == None: #The word isn't in Nielsen's sentiment dictionary
@@ -83,7 +66,9 @@ def main():
             myterms = myterms + myterms_temp #Append master list with list of new words in this tweet
     #Print master list
     for term in myterms:
-        sys.stdout.write(str(term["word"])+ " " + str(term["score"])+"\n")
+        if len(term["word"]) != 0 or term["score"]==0:
+            sys.stdout.write(str(term["word"])+ " " + str(term["score"])+"\n")
+               
 
     sent_file.close
     tweet_file.close
