@@ -1,4 +1,12 @@
 import sys
+import string
+
+sam = {'count': 1, 'word': u'\U0001f602&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;'}
+s = sam["word"]
+joe = filter(lambda x: x in string.printable, s)
+control_chars = ''.join(map(unichr, range(0,32) + range(127,160)))
+print s.encode("utf-8")
+#print sam["word"]
 
 blah = []
 string = 'blah'

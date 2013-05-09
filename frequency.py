@@ -1,5 +1,6 @@
 import sys
 import json
+import string
 
 def hw():
     print 'Hello, world!'
@@ -33,26 +34,25 @@ def main():
     myterms = [] #This is the final list of terms
     totalwords = 0
     #for onetweet in tweets: #REMOVE THIS XRANGE CONSTRAINT
-    for onetweet in tweets[:20]:
+    for onetweet in tweets:
         if onetweet.has_key('text') == 1:
-            textdata = onetweet['text'].lower() # **sentiment file is all lower case
+            textdata = onetweet['text'] # **sentiment file is all lower case
             for word in textdata.split():
                 totalwords = totalwords + 1
-                #cleanword = word.encode('utf-8')
-                cleanerword = word.rstrip('?:!.,;') #Removing punctuation
+                cleanword = word.encode("utf-8")
+                cleanerword = cleanword.rstrip('?:!.,;') #Removing punctuation
                 cleanerword = cleanerword.replace("\n"," ") #Removing line breaks
+                cleanerword = filter(lambda x: x in string.printable, cleanerword)
                 #Check to see if it's already in my list
                 checkvar = 0
                 for term in myterms: #The word is already in my list, so update its count
-                    if len(myterms) > 0:
-                        print term["word"]
-                        print cleanerword
+                    if len(word) > 0:
                         if term["word"] == cleanerword:
                             current_count = term["count"]
                             term["count"] = current_count + 1 #Increment the number of instances                        
                             checkvar = 1
-                #The word isn't already in my list, add it
-                if checkvar == 0: 
+                    #The word isn't already in my list, add it
+                if checkvar == 0 and len(word) > 0: 
                     myterms =  myterms + [{
                     "word":word,
                     "count":1,
@@ -61,8 +61,9 @@ def main():
     #Print master list
     for term in myterms:
         wordstring = term["word"]
+        wordstring = wordstring.encode("utf-8")
         freq = str(float(float(term["count"])/totalwords))
-        sys.stdout.write(str(wordstring) + " ")
+        sys.stdout.write(str(wordstring) + " " + freq + "\n ")
         #sys.stdout.write(str(term["word"])+ " " + str(freq)+"\n")
 
     sent_file.close
