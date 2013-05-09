@@ -36,8 +36,8 @@ def main():
             tweets.append(json.loads(x)) 
 
     myterms = [] #This is the final list of new terms
-    #for onetweet in tweets: #REMOVE THIS XRANGE CONSTRAINT
-    for onetweet in tweets[:20]:
+    for onetweet in tweets: 
+    #for onetweet in tweets[:20]: #REMOVE THIS XRANGE CONSTRAINT
         totalscore = 0
         if onetweet.has_key('text') == 1:
             textdata = onetweet['text'].lower() # **sentiment file is all lower case
