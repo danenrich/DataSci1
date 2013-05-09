@@ -19,7 +19,7 @@ def main():
     myterms = [] #This is the final list of terms
     totalwords = 0
     #for onetweet in tweets: #REMOVE THIS XRANGE CONSTRAINT
-    for onetweet in tweets[:20]:
+    for onetweet in tweets:
         if onetweet.has_key('text') == 1:
             textdata = onetweet['text'] # **sentiment file is all lower case
             for word in textdata.split():
