@@ -1,25 +1,45 @@
 import sys
 import string
+import collections
+
+hashtagfrenzy = ['#SFGiants defeat the #Phillies 4-3 on #Mom Andres Torres 4th career walk-off hit','Great day for @BenefitBeauty #gifts at #SFGiants stadium! Bring #Mom and make #MothersDay a great one! #eBayNow']
+hashlist = []
+hashtemp = []
+for hashy in hashtagfrenzy:
+    hashtemp = list(set(part for part in hashy.split() if part.startswith('#')))
+    hashlist = hashlist + hashtemp
+print hashlist
+"""
+uniques = []
+uniques = list(set(hashlist))
+print uniques
+"""
+freqtable = collections.Counter(hashlist)
+sorttable = sorted(freqtable.items(), key=lambda item: item[1], reverse=True)
+print sorttable
+smalltable = sorttable[:3]
+print smalltable
+
 
 spamfancy = {"place":{"country":"United States", "country_code":"US", "full_name":"Washington, DC"}}
-print spamfancy["place"]["country"]
+#print spamfancy["place"]["country"]
 
 
 sam = {'count': 1, 'word': u'\U0001f602&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;'}
 s = sam["word"]
 joe = filter(lambda x: x in string.printable, s)
 control_chars = ''.join(map(unichr, range(0,32) + range(127,160)))
-print s.encode("utf-8")
+#print s.encode("utf-8")
 #print sam["word"]
 
 blah = []
 string = 'blah'
 blah = blah + [string]
-print blah
+#print blah
 
 fp = 100
 fp = fp / 8
-print fp
+#print fp
 
 spam = [{ 'Hola':'1', 'Hoi':"2", 'noun':"3" },{ 'Hola':'5', 'Hoi':"7", 'cat':"10" }]
 #print type(spam)
@@ -28,7 +48,7 @@ spam = [{ 'Hola':'1', 'Hoi':"2", 'noun':"3" },{ 'Hola':'5', 'Hoi':"7", 'cat':"10
 new = []
 new = [{'red':'6','blue':"10"}] 
 spam = spam + new
-print spam[1]['Hola']
+#print spam[1]['Hola']
 
 #print spam[0]['noun']
 
@@ -37,7 +57,7 @@ small = []
 for i in spam:
     small= i.keys()
     keylist = keylist + small
-print keylist
+#print keylist
 
 uniques = []
 uniques = list(set(keylist))
@@ -68,9 +88,9 @@ dict1.append(temp)
 for i in dict1:
     if i["word"] == "blah":
         i["count"] = i["count"]+1
-        print i["count"]
+        #print i["count"]
 #joe = dict1.get("word"'blah2')
  
-print dict1
-print temp
+#print dict1
+#print temp
 #print joe
