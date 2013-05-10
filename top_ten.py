@@ -15,9 +15,10 @@ def main():
     #for onetweet in tweets[:2000]: #REMOVE THIS XRANGE CONSTRAINT
         if onetweet.has_key('text') == 1:
             textual = onetweet['text']
-            cleantext = textual.encode('utf-8')
-            cleanertext = cleantext.rstrip('?:!.,;') #Removing punctuation
-            cleanertext = cleanertext.replace("\n"," ")
+            #cleantext = textual.encode('utf-8')
+            #cleanertext = cleantext.rstrip('?:!.,;') #Removing punctuation
+            #cleanertext = cleanertext.replace("\n"," ")
+            cleanertext = textual.replace("\n"," ")
             textdata = textdata + [cleanertext] #list of text strings
 
     hashlist = []
