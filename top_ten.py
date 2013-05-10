@@ -30,8 +30,15 @@ def main():
     sorttable = sorted(freqtable.items(), key=lambda item: item[1], reverse=True)
     #print sorttable
     smalltable = sorttable[:10]
-    print smalltable
+    #print smalltable
 
+    #Print master list
+    for item in smalltable:
+        hashstring = item[0]
+        hashstring = hashstring.encode("utf-8")
+        freq = str(float(item[1]))
+        sys.stdout.write(str(hashstring) + " " + freq + "\n")
+    
     tweet_file.close
 
 if __name__ == '__main__':
