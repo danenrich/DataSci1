@@ -18,7 +18,7 @@ def main():
             #cleantext = textual.encode('utf-8')
             #cleanertext = cleantext.rstrip('?:!.,;') #Removing punctuation
             #cleanertext = cleanertext.replace("\n"," ")
-            cleanertext = textual.replace("\n"," ")
+            cleanertext = textual #.replace("\n"," ")
             textdata = textdata + [cleanertext] #list of text strings
 
     hashlist = []
@@ -36,7 +36,7 @@ def main():
     #Print master list
     for item in smalltable:
         hashstring = item[0]
-        hashstring = hashstring.encode("utf-8")
+        hashstring = hashstring #.encode("utf-8")
         freq = str(float(item[1]))
         sys.stdout.write(str(hashstring) + " " + freq + "\n")
     
