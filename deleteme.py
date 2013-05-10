@@ -1,6 +1,10 @@
 import sys
 import string
 
+spamfancy = {"place":{"country":"United States", "country_code":"US", "full_name":"Washington, DC"}}
+print spamfancy["place"]["country"]
+
+
 sam = {'count': 1, 'word': u'\U0001f602&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;'}
 s = sam["word"]
 joe = filter(lambda x: x in string.printable, s)
