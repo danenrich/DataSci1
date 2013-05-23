@@ -1,0 +1,17 @@
+Frequency table
+docid (varchar)
+Term (varchar)
+Count (int)
+
+
+a)	select count(*) from frequency where docid = "10398_txt_earn";
+b)	select count(term) from frequency where docid = "10398_txt_earn" and count = 1;
+c)	sqlite> select count(term) from (select term from frequency where docid = "10398_txt_earn" and count = 1 union select term from frequency where docid="925_txt_trade" and count=1);
+d)	select count (distinct docid) from frequency where term = "parliament";
+e)	select count(docid) from (select docid, sum(count) as sumdocs from frequency group by docid) where sumdocs > 300;
+f)	select count(docid) from frequency where term="transactions" and docid IN (select docid from frequency where term="world");
+g)	row_num, col_num, value
+h)	select a.row_num, b.col_num, sum(a.value*b.value) as val from a join b on a.col_num = b.row_num where a.row_num = 2 and b.col_num = 3 group by a.row_num, b.col_num;
+i)	select sum(a.count*b.count) from (select * from frequency where docid = "10080_txt_crude") as a join (select * from frequency where docid = "17035_txt_earn") as b on a.term=b.term group by a.docid;
+j)	create view wash as SELECT * FROM frequency UNION SELECT 'q' as docid, 'washington' as term, 1 as count UNION SELECT 'q' as docid, 'taxes' as term, 1 as count UNION SELECT 'q' as docid, 'treasury' as term, 1 as count;
+k)	select b.docid, sum(a.count*b.count) as val from (select * from wash where docid = "q") as a join (select * from frequency) as b on a.term=b.term group by b.docid order by val desc limit 10;
