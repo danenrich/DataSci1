@@ -46,6 +46,8 @@ def reducer(key, list_of_values):
     
     #can just iterate through the "a"s. if there is no corresponding b (or an a is missing), it's zero anyway.
     celltotal=0
+    
+
     for a in list_of_values:
         if a[0]=="a":
             aindex = a[1]
@@ -55,13 +57,10 @@ def reducer(key, list_of_values):
                 bval = b[2]
                 if b[0]=="b" and bindex==aindex:
                     cellmult = bval * aval
-                    #print cellmult
-                    celltotal=+cellmult
-    
+                    celltotal+=cellmult
     outtext = []
     outtext = list(key) + [celltotal]
-    mr.emit((outtext))
-    #print key, list_of_values
+    mr.emit((tuple(outtext)))
     
                     
 # Do not modify below this line
