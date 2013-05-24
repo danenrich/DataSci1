@@ -30,17 +30,18 @@ def reducer(key, list_of_values):
     #print len(bob)
     if len(bob) < 3:
         #print len(bob)
-        newlist = out + bob[1] 
-    """
+        newlist = out + list_of_values[0] 
+
     for i in list_of_values:
         #print i, len(i)
         if len(i) == 1:  
             print i
             newlist = newlist + i
-    """
+        
     if len(newlist) > 0:
+        newlist = tuple(newlist)
         mr.emit(newlist)
-                    
+            
 # Do not modify below this line
 # =============================
 if __name__ == '__main__':
