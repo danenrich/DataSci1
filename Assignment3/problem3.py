@@ -21,12 +21,9 @@ def reducer(key, list_of_values):
     # key: word
     # value: list of occurrence counts
     output = []
-    numfriends = len(list_of_values)
-    output = [key] + [numfriends] 
-    mr.emit(output)
-          
-    #mr.emit((key, cleanlist))
-
+    numfriends =  len(list_of_values)
+    mr.emit((key,numfriends))
+                    
 # Do not modify below this line
 # =============================
 if __name__ == '__main__':
