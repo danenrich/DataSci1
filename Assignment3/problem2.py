@@ -24,11 +24,16 @@ def mapper(record):
 def reducer(key, list_of_values):
     # key: word
     # value: list of occurrence counts
-    orders = []
     output = []
     for v in list_of_values:
-      if v[0] == 'order':
-         print 'match' 
+        if v[0] == 'order':
+            output = [v[0]] + [str(key)] + v[1]
+            for x in list_of_values:
+                if x[0] == 'line_item':
+                    output = output + [x[0]] + [str(key)] + x[1]
+    mr.emit(output)
+                    
+          
     #mr.emit((key, cleanlist))
 
 # Do not modify below this line
