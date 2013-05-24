@@ -25,13 +25,15 @@ def reducer(key, list_of_values):
     # key: word
     # value: list of occurrence counts
     output = []
+    ordertext = ""
     for v in list_of_values:
         if v[0] == 'order':
-            output = [v[0]] + [str(key)] + v[1]
-            for x in list_of_values:
-                if x[0] == 'line_item':
-                    output = output + [x[0]] + [str(key)] + x[1]
-    mr.emit(output)
+            ordertext = [v[0]] + [str(key)] + v[1]
+    #print ordertext
+    for x in list_of_values:
+        if x[0] == 'line_item': 
+            output = ordertext + [x[0]] + [str(key)] + x[1]
+            mr.emit(output)
                     
           
     #mr.emit((key, cleanlist))
