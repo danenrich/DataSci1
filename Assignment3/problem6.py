@@ -57,7 +57,10 @@ def reducer(key, list_of_values):
                     cellmult = bval * aval
                     #print cellmult
                     celltotal=+cellmult
-    mr.emit((key,celltotal))
+    
+    outtext = []
+    outtext = list(key) + [celltotal]
+    mr.emit((outtext))
     #print key, list_of_values
     
                     
