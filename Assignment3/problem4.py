@@ -16,7 +16,7 @@ def mapper(record):
  
     tupper = tuple(record)
     mr.emit_intermediate(tupper,record)
-    mr.emit_intermediate(tuple(reversed(record)),list(tupper))
+    mr.emit_intermediate(tuple(reversed(record)),record)
 
 def reducer(key, list_of_values):
     # key: word
@@ -30,18 +30,12 @@ def reducer(key, list_of_values):
     #print len(bob)
     if len(bob) < 3:
         #print len(bob)
-        newlist = out + list_of_values[0] 
-
-    for i in list_of_values:
-        #print i, len(i)
-        if len(i) == 1:  
-            print i
-            newlist = newlist + i
-        
+        newlist = out + [key] #list_of_values[0] 
+     
     if len(newlist) > 0:
-        newlist = tuple(newlist)
+        newlist = tuple(newlist[0])
         mr.emit(newlist)
-            
+        
 # Do not modify below this line
 # =============================
 if __name__ == '__main__':
