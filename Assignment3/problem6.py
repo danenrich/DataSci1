@@ -33,6 +33,13 @@ def mapper(record):
             vallist = [matrixid,colnum,val]
             mr.emit_intermediate(key, vallist)
 
+    if matrixid == "b":
+    #a:every val in a gets multiplied in each col of b. row in a is its row in c. for a, we need to know its original column and its value. need to gen keys for each col of c.
+        for i in range(0,maxkey):
+            key = (i,colnum)
+            vallist = [matrixid,rownum,val]
+            mr.emit_intermediate(key, vallist)
+
 def reducer(key, list_of_values):
     # key: word
     # value: list of occurrence counts
